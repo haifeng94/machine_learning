@@ -6,6 +6,9 @@ from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.model_selection import KFold
 from sklearn import model_selection
 
+'''
+Titanic solution 1:主要根据数值型数据进行简单的数据处理，然后利用线性回归及逻辑回归进行简单预测
+'''
 
 # 线性回归
 def linearRegress(data_train):
