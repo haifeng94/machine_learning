@@ -12,6 +12,10 @@ from sklearn.ensemble import RandomForestRegressor
 import warnings
 warnings.filterwarnings('ignore')
 
+'''
+此代码主要进行前期的数据处理，主要包括缺失值的填充，连续性数据的转换，及非数值型数据的处理等
+'''
+
 def data_process():
     # 读取文件
     data_train = pd.read_csv('train.csv') # 891rows
