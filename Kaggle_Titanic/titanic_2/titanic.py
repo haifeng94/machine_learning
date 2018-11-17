@@ -18,7 +18,7 @@ from xgboost import XGBClassifier
 此代码主要包括特征工程处理、模型融合、数据预测、及生成预测结果(StackingSubmission.csv)
 '''
 
-# 特征提取
+#特征提取
 def get_top_n_features(train_data_X,train_data_Y,top_n_features):
     # randomforest
     rf = RandomForestClassifier(random_state=0)
