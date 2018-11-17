@@ -7,6 +7,10 @@ from sklearn import model_selection
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import KFold
 
+'''
+Titanic solution 1:主要在前面的数值型数据的基础上增加两个特征，然后进行简单的数据处理，最后利用随机森林及逻辑回归进行简单预测
+'''
+
 # 数据处理
 def dataProcess(data):
     # Age列中的缺失值用Age中位数进行填充
