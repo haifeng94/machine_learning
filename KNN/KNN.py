@@ -4,6 +4,10 @@ import numpy as np
 import operator
 import matplotlib.pyplot as plt
 
+'''
+代码参考<<机器学习实战>>
+'''
+
 # 数据集及其标签
 def createDataSet():
     group = np.array([[1.0,2.0],[1.2,0.1],[0.1,1.4],[0.3,3.5]])
