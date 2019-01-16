@@ -49,15 +49,10 @@ def knnClassify(inX,dataSet,label,k):
     # 计算欧式距离
     #print(np.tile(inX,(dataSetSize,1)))  # tile(A，rep)重复A的各个维度，A: Array类的都可以，rep：A沿着各个维度重复的次数
     diffMat = np.tile(inX,(dataSetSize,1)) - dataSet # tile重复数组inX，有dataSet行 1个dataSet列，减法计算差值
-    #print(diffMat)
     sqDiffMat = diffMat ** 2  # **是幂运算的意思，这里用的欧式距离
-    #print(sqDiffMat)
     sqDisttances = sqDiffMat.sum(axis=1) # 普通sum默认参数为axis=0为普通相加，axis=1为一行的行向量相加
-    #print(sqDisttances)
     distances = sqDisttances ** 0.5
-    #print(distances)
     sortedDistIndicies = np.argsort(distances) # argsort返回数值从小到大的索引值（数组索引0,1,2,3）
-    #print(sortedDistIndicies)
 
     # 选择距离最小的k个点
     classCount = {}
