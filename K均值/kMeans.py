@@ -59,7 +59,7 @@ def kMeans(dataSet,k,distMeas=distEclud,createCent=randCent):
         clusterChanged = False
         for i in range(m):  #循环每一个数据点并分配到最近的质心中去
             minDist = float('inf')
-            minIndex = -1  # init
+            minIndex = -1  #init
             for j in range(k): #for every k centers，find the nearest center
                 distJI = distMeas(centroids[j,:],dataSet[i,:])
                 if distJI < minDist:  #if distance is shorter than minDist, 更新 minDist（最小距离）和最小质心的 index（索引）
@@ -71,7 +71,7 @@ def kMeans(dataSet,k,distMeas=distEclud,createCent=randCent):
 
             clusterAssment[i,:] = minIndex, minDist**2
 
-        for cent in range(k):  # 更新质心
+        for cent in range(k):  #更新质心
             ptsInClust = dataSet[np.nonzero(clusterAssment[:,0]==cent)[0]]  #获取该簇中的所有点
             centroids[cent,:] = np.mean(ptsInClust,axis=0) #将质心修改为簇中所有点的平均值，mean 就是求平均值的
 
@@ -101,7 +101,7 @@ def biKmeans(dataSet,k,distMeas=distEclud):
                 bestClustAss = splitClustAss.copy()
                 lowestSSE = sseSplit + sseNotSplit
 
-        # 找出最好的簇分配结果
+        #找出最好的簇分配结果
         bestClustAss[np.nonzero(bestClustAss[:,0].A == 1)[0], 0] = len(centList) #调用二分 kMeans 的结果，默认簇是 0,1. 当然也可以改成其它的数字
         bestClustAss[np.nonzero(bestClustAss[:,0].A == 0)[0], 0] = bestCentToSplit #更新为最佳质心
         print('the bestCentToSplit is: ', bestCentToSplit)
