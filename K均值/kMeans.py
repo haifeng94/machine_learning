@@ -51,22 +51,22 @@ def kMeans(dataSet,k,distMeas=distEclud,createCent=randCent):
     '''
 
     m = np.shape(dataSet)[0]
-    clusterAssment = np.mat(np.zeros((m,2)))  # 创建一个与 dataSet 行数一样，但是有两列的矩阵，用来保存簇分配结果(2 cols for index and error)
-    centroids = createCent(dataSet,k)  # 创建质心，随机k个质心
+    clusterAssment = np.mat(np.zeros((m,2)))  #创建一个与 dataSet 行数一样，但是有两列的矩阵，用来保存簇分配结果(2 cols for index and error)
+    centroids = createCent(dataSet,k)  #创建质心，随机k个质心
     clusterChanged = True
 
     while clusterChanged:
         clusterChanged = False
-        for i in range(m):  # 循环每一个数据点并分配到最近的质心中去
+        for i in range(m):  #循环每一个数据点并分配到最近的质心中去
             minDist = float('inf')
             minIndex = -1  # init
-            for j in range(k): # for every k centers，find the nearest center
+            for j in range(k): #for every k centers，find the nearest center
                 distJI = distMeas(centroids[j,:],dataSet[i,:])
-                if distJI < minDist:  # if distance is shorter than minDist, 更新 minDist（最小距离）和最小质心的 index（索引）
+                if distJI < minDist:  #if distance is shorter than minDist, 更新 minDist（最小距离）和最小质心的 index（索引）
                     minDist = distJI
-                    minIndex = j  # update distance and index(类别)
+                    minIndex = j  #update distance and index(类别)
 
-            if clusterAssment[i,0] != minIndex:  # 此处判断数据点所属类别与之前是否相同（是否变化，只要有一个点变化就重设为True，再次迭代）
+            if clusterAssment[i,0] != minIndex:  #此处判断数据点所属类别与之前是否相同（是否变化，只要有一个点变化就重设为True，再次迭代）
                 clusterChanged = True
 
             clusterAssment[i,:] = minIndex, minDist**2
@@ -95,7 +95,7 @@ def biKmeans(dataSet,k,distMeas=distEclud):
             sseSplit = np.sum(splitClustAss[:,1])  # 将二分kMeans结果中的平方和的距离进行求和
             sseNotSplit = np.sum(clusterAssment[np.nonzero(clusterAssment[:,0].A != i)[0], 1]) # 将未参与二分 kMeans 分配结果中的平方和的距离进行求和
             print("sseSplit, and notSplit: ", sseSplit, sseNotSplit)
-            if (sseSplit + sseNotSplit) < lowestSSE:  # 总的（未拆分和已拆分）误差和越小，越相似，效果越优化，划分的结果更好
+            if (sseSplit + sseNotSplit) < lowestSSE:  #总的（未拆分和已拆分）误差和越小，越相似，效果越优化，划分的结果更好
                 bestCentToSplit = i
                 bestNewCents = centroidMat
                 bestClustAss = splitClustAss.copy()
