@@ -20,8 +20,8 @@ def loadDataSet(fileName):
     fr = open(fileName)
     for line in fr.readlines(): #for each line
         curLine = line.strip().split()
-        # python3不适用：fltLine = map(float,curLine) 修改为：
-        fltLine = list(map(float,curLine)) # 将每行映射成浮点数，python3返回值改变,python3返回的是object对象，所以需要转list
+        #python3不适用：fltLine = map(float,curLine) 修改为：
+        fltLine = list(map(float,curLine)) #将每行映射成浮点数，python3返回值改变,python3返回的是object对象，所以需要转list
         dataMat.append(fltLine)
 
     return dataMat
@@ -88,7 +88,7 @@ def biKmeans(dataSet,k,distMeas=distEclud):
         clusterAssment[j,1] = distMeas(np.mat(centroid0),dataSet[j,:]) ** 2
 
     while len(centList) < k:
-        lowestSSE = float('inf')  # init SSE
+        lowestSSE = float('inf')  #init SSE
         for i in range(len(centList)): # for every centroid
             ptsInCurrCluster = dataSet[np.nonzero(clusterAssment[:,0].A == i)[0],:]  #获取当前簇i下的所有数据点
             centroidMat,splitClustAss = kMeans(ptsInCurrCluster,2,distMeas) #将当前簇 i 进行二分kMeans处理
@@ -133,7 +133,7 @@ def clusterClubs(numClust=5): #参数numClust，希望得到的簇数目
     rect = [0.1,0.1,0.8,0.8] # 创建矩形
     #创建不同标记图案
     scatterMarkers = ['s', 'o', '^', '8', 'p', 'd', 'v', 'h', '>', '<']
-    axprops = dict(xticks=[],yticks=[]) # {'yticks': [], 'xticks': []}
+    axprops = dict(xticks=[],yticks=[]) #{'yticks': [], 'xticks': []}
     ax0 = fig.add_axes(rect, label = 'ax0', **axprops)
     imgP = plt.imread('Portland.png') # 导入地图
     ax0.imshow(imgP)
