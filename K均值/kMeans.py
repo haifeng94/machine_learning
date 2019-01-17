@@ -28,16 +28,16 @@ def loadDataSet(fileName):
 
 #distance function
 def distEclud(vecA,vecB):
-    return np.sqrt(np.sum(np.power(vecA-vecB,2)))  # 计算A，B两点的欧式距离，其中，np.power(a,b)表示a**b,可以用np.linalg.norm(vec1 - vec2)
+    return np.sqrt(np.sum(np.power(vecA-vecB,2)))  #计算A，B两点的欧式距离，其中，np.power(a,b)表示a**b,可以用np.linalg.norm(vec1 - vec2)
 
 #initialize K points randomly
 def randCent(dataSet, k):
-    n = np.shape(dataSet)[1]  # 列的数量
-    centroids = np.mat(np.zeros((k,n)))  # 创建k个质心矩阵
-    for j in range(n):  # 创建随机簇质心，并且在每一维的边界内
-        minJ = min(dataSet[:,j]) # 最小值
-        rangeJ = float(max(dataSet[:,j]) - minJ)  # 范围 = 最大值 - 最小值
-        centroids[:,j] = np.mat(minJ + rangeJ * np.random.rand(k,1)) # np.random.rand(k,1)表示随机生成[0,1)范围内的shape(k,1)的array(数组）
+    n = np.shape(dataSet)[1]  #列的数量
+    centroids = np.mat(np.zeros((k,n)))  #创建k个质心矩阵
+    for j in range(n):  #创建随机簇质心，并且在每一维的边界内
+        minJ = min(dataSet[:,j]) #最小值
+        rangeJ = float(max(dataSet[:,j]) - minJ)  #范围 = 最大值 - 最小值
+        centroids[:,j] = np.mat(minJ + rangeJ * np.random.rand(k,1)) #np.random.rand(k,1)表示随机生成[0,1)范围内的shape(k,1)的array(数组）
 
     return centroids
 
@@ -72,16 +72,16 @@ def kMeans(dataSet,k,distMeas=distEclud,createCent=randCent):
             clusterAssment[i,:] = minIndex, minDist**2
 
         for cent in range(k):  # 更新质心
-            ptsInClust = dataSet[np.nonzero(clusterAssment[:,0]==cent)[0]]  # 获取该簇中的所有点
-            centroids[cent,:] = np.mean(ptsInClust,axis=0) # 将质心修改为簇中所有点的平均值，mean 就是求平均值的
+            ptsInClust = dataSet[np.nonzero(clusterAssment[:,0]==cent)[0]]  #获取该簇中的所有点
+            centroids[cent,:] = np.mean(ptsInClust,axis=0) #将质心修改为簇中所有点的平均值，mean 就是求平均值的
 
     return centroids,clusterAssment
 
 #二分K-均值聚类
 def biKmeans(dataSet,k,distMeas=distEclud):
     m = np.shape(dataSet)[0]
-    clusterAssment = np.mat(np.zeros((m,2)))  # 保存每个数据点的簇分配结果和平方误差
-    centroid0 = np.mean(dataSet,axis=0).tolist()[0]  # 质心初始化为所有数据点的均值, numpy tolist()将数组或者矩阵转换成列表
+    clusterAssment = np.mat(np.zeros((m,2)))  #保存每个数据点的簇分配结果和平方误差
+    centroid0 = np.mean(dataSet,axis=0).tolist()[0]  #质心初始化为所有数据点的均值, numpy tolist()将数组或者矩阵转换成列表
     centList = [centroid0]  #初始化只有 1 个质心的 list
 
     for j in range(m):   #计算所有数据点到初始质心的距离平方误差
@@ -90,10 +90,10 @@ def biKmeans(dataSet,k,distMeas=distEclud):
     while len(centList) < k:
         lowestSSE = float('inf')  # init SSE
         for i in range(len(centList)): # for every centroid
-            ptsInCurrCluster = dataSet[np.nonzero(clusterAssment[:,0].A == i)[0],:]  # 获取当前簇i下的所有数据点
-            centroidMat,splitClustAss = kMeans(ptsInCurrCluster,2,distMeas) # 将当前簇 i 进行二分kMeans处理
-            sseSplit = np.sum(splitClustAss[:,1])  # 将二分kMeans结果中的平方和的距离进行求和
-            sseNotSplit = np.sum(clusterAssment[np.nonzero(clusterAssment[:,0].A != i)[0], 1]) # 将未参与二分 kMeans 分配结果中的平方和的距离进行求和
+            ptsInCurrCluster = dataSet[np.nonzero(clusterAssment[:,0].A == i)[0],:]  #获取当前簇i下的所有数据点
+            centroidMat,splitClustAss = kMeans(ptsInCurrCluster,2,distMeas) #将当前簇 i 进行二分kMeans处理
+            sseSplit = np.sum(splitClustAss[:,1])  #将二分kMeans结果中的平方和的距离进行求和
+            sseNotSplit = np.sum(clusterAssment[np.nonzero(clusterAssment[:,0].A != i)[0], 1]) #将未参与二分 kMeans 分配结果中的平方和的距离进行求和
             print("sseSplit, and notSplit: ", sseSplit, sseNotSplit)
             if (sseSplit + sseNotSplit) < lowestSSE:  #总的（未拆分和已拆分）误差和越小，越相似，效果越优化，划分的结果更好
                 bestCentToSplit = i
@@ -102,21 +102,21 @@ def biKmeans(dataSet,k,distMeas=distEclud):
                 lowestSSE = sseSplit + sseNotSplit
 
         # 找出最好的簇分配结果
-        bestClustAss[np.nonzero(bestClustAss[:,0].A == 1)[0], 0] = len(centList) # 调用二分 kMeans 的结果，默认簇是 0,1. 当然也可以改成其它的数字
-        bestClustAss[np.nonzero(bestClustAss[:,0].A == 0)[0], 0] = bestCentToSplit # 更新为最佳质心
+        bestClustAss[np.nonzero(bestClustAss[:,0].A == 1)[0], 0] = len(centList) #调用二分 kMeans 的结果，默认簇是 0,1. 当然也可以改成其它的数字
+        bestClustAss[np.nonzero(bestClustAss[:,0].A == 0)[0], 0] = bestCentToSplit #更新为最佳质心
         print('the bestCentToSplit is: ', bestCentToSplit)
         print('the len of bestClustAss is: ', len(bestClustAss))
-        centList[bestCentToSplit] = bestNewCents[0,:].tolist()[0]  # 更新原质心位置 list 中的第 i 个质心为使用二分 kMeans 后 bestNewCents 的第一个质心
-        centList.append(bestNewCents[1,:].tolist()[0])  # 添加 bestNewCents 的第二个质心
-        clusterAssment[np.nonzero(clusterAssment[:, 0].A == bestCentToSplit)[0],:] = bestClustAss # 重新分配最好簇下的数据（质心）以及SSE
+        centList[bestCentToSplit] = bestNewCents[0,:].tolist()[0]  #更新原质心位置 list 中的第 i 个质心为使用二分 kMeans 后 bestNewCents 的第一个质心
+        centList.append(bestNewCents[1,:].tolist()[0])  #添加 bestNewCents 的第二个质心
+        clusterAssment[np.nonzero(clusterAssment[:, 0].A == bestCentToSplit)[0],:] = bestClustAss #重新分配最好簇下的数据（质心）以及SSE
 
     return np.mat(centList),clusterAssment
 
 #distance calc function：结合两个点经纬度（用角度做单位），返回地球表面两点之间距离
-def distSLC(vecA,vecB): # Spherical Law of Cosines, 余弦球面定理
+def distSLC(vecA,vecB): #Spherical Law of Cosines, 余弦球面定理
     a = np.sin(vecA[0,1] * np.pi / 180) * np.sin(vecB[0,1] * np.pi / 180)
     b = np.cos(vecA[0,1] * np.pi / 180) * np.cos(vecB[0,1] * np.pi / 180) * np.cos(np.pi * (vecB[0,0] - vecA[0,0]) / 180)
-    return np.arccos(a + b) * 6371.0  # 6371.0为地球半径
+    return np.arccos(a + b) * 6371.0  #6371.0为地球半径
 
 #draw function
 def clusterClubs(numClust=5): #参数numClust，希望得到的簇数目
