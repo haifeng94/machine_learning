@@ -14,7 +14,7 @@ K-Means:
     对每一个簇，计算簇中所有点的均值并将均值作为质心。
 '''
 
-# load data
+#load data
 def loadDataSet(fileName):
     dataMat = []
     fr = open(fileName)
@@ -26,11 +26,11 @@ def loadDataSet(fileName):
 
     return dataMat
 
-# distance function
+#distance function
 def distEclud(vecA,vecB):
     return np.sqrt(np.sum(np.power(vecA-vecB,2)))  # 计算A，B两点的欧式距离，其中，np.power(a,b)表示a**b,可以用np.linalg.norm(vec1 - vec2)
 
-# initialize K points randomly
+#initialize K points randomly
 def randCent(dataSet, k):
     n = np.shape(dataSet)[1]  # 列的数量
     centroids = np.mat(np.zeros((k,n)))  # 创建k个质心矩阵
@@ -41,7 +41,7 @@ def randCent(dataSet, k):
 
     return centroids
 
-# K-均值算法
+#K-均值算法
 def kMeans(dataSet,k,distMeas=distEclud,createCent=randCent):
     '''
     dataSet: 数据集
@@ -77,14 +77,14 @@ def kMeans(dataSet,k,distMeas=distEclud,createCent=randCent):
 
     return centroids,clusterAssment
 
-# 二分K-均值聚类
+#二分K-均值聚类
 def biKmeans(dataSet,k,distMeas=distEclud):
     m = np.shape(dataSet)[0]
     clusterAssment = np.mat(np.zeros((m,2)))  # 保存每个数据点的簇分配结果和平方误差
     centroid0 = np.mean(dataSet,axis=0).tolist()[0]  # 质心初始化为所有数据点的均值, numpy tolist()将数组或者矩阵转换成列表
-    centList = [centroid0]  # 初始化只有 1 个质心的 list
+    centList = [centroid0]  #初始化只有 1 个质心的 list
 
-    for j in range(m):   # 计算所有数据点到初始质心的距离平方误差
+    for j in range(m):   #计算所有数据点到初始质心的距离平方误差
         clusterAssment[j,1] = distMeas(np.mat(centroid0),dataSet[j,:]) ** 2
 
     while len(centList) < k:
@@ -112,13 +112,13 @@ def biKmeans(dataSet,k,distMeas=distEclud):
 
     return np.mat(centList),clusterAssment
 
-# distance calc function：结合两个点经纬度（用角度做单位），返回地球表面两点之间距离
+#distance calc function：结合两个点经纬度（用角度做单位），返回地球表面两点之间距离
 def distSLC(vecA,vecB): # Spherical Law of Cosines, 余弦球面定理
     a = np.sin(vecA[0,1] * np.pi / 180) * np.sin(vecB[0,1] * np.pi / 180)
     b = np.cos(vecA[0,1] * np.pi / 180) * np.cos(vecB[0,1] * np.pi / 180) * np.cos(np.pi * (vecB[0,0] - vecA[0,0]) / 180)
     return np.arccos(a + b) * 6371.0  # 6371.0为地球半径
 
-# draw function
+#draw function
 def clusterClubs(numClust=5): # 参数numClust，希望得到的簇数目
     datList = []
     for line in open('places.txt').readlines(): # 获取地图数据
