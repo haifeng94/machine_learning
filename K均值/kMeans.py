@@ -119,19 +119,19 @@ def distSLC(vecA,vecB): # Spherical Law of Cosines, 余弦球面定理
     return np.arccos(a + b) * 6371.0  # 6371.0为地球半径
 
 #draw function
-def clusterClubs(numClust=5): # 参数numClust，希望得到的簇数目
+def clusterClubs(numClust=5): #参数numClust，希望得到的簇数目
     datList = []
-    for line in open('places.txt').readlines(): # 获取地图数据
+    for line in open('places.txt').readlines(): #获取地图数据
         lineArr = line.strip().split()
-        datList.append([float(lineArr[-1]), float(lineArr[-2])])  # 逐个获取第四列和第五列的经纬度信息
+        datList.append([float(lineArr[-1]), float(lineArr[-2])])  #逐个获取第四列和第五列的经纬度信息
 
     dataMat = np.mat(datList)
     myCentroids, clustAssing = biKmeans(dataMat, numClust, distMeas=distSLC)
 
-    # draw
+    #draw
     fig = plt.figure()
     rect = [0.1,0.1,0.8,0.8] # 创建矩形
-    # 创建不同标记图案
+    #创建不同标记图案
     scatterMarkers = ['s', 'o', '^', '8', 'p', 'd', 'v', 'h', '>', '<']
     axprops = dict(xticks=[],yticks=[]) # {'yticks': [], 'xticks': []}
     ax0 = fig.add_axes(rect, label = 'ax0', **axprops)
