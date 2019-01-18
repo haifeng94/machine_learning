@@ -5,6 +5,8 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.naive_bayes import BernoulliNB
 
+'''利用sklearn模块进行贝叶斯学习'''
+
 #高斯朴素贝叶斯
 X = np.array([[-1, -1], [-2, -1], [-3, -2], [1, 1], [2, 1], [3, 2]])
 Y = np.array([1, 1, 1, 2, 2, 2])
