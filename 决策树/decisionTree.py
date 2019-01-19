@@ -5,6 +5,8 @@ import operator
 import treePlotter
 import matplotlib.pyplot as plt
 
+'''来源机器学习实战'''
+
 # 数据集
 def createDataSet():
     """
