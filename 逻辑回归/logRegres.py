@@ -2,6 +2,11 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+
+'''
+参考机器学习实战
+'''
+
 # 数据集及标签
 def loadDataSet():
     dataMat = []
