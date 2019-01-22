@@ -206,7 +206,6 @@ def stageWise(xArr, yArr, eps=0.01, numIt=100):
     wsMax = ws.copy()
 
     for i in range(numIt):
-        #print(ws.T)
         lowestError = float('inf')  # inf的意思是正无穷
         #print(lowestError)
 
