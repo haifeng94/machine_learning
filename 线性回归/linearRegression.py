@@ -41,7 +41,7 @@ def plotGrap():
     xMat = np.mat(dataMat)
     yMat = np.mat(labelMat)
     ws = standRegres(dataMat, labelMat)
-    print(ws)
+ 
     yHat = xMat * ws
 
     fig = plt.figure()
@@ -51,7 +51,6 @@ def plotGrap():
 
     xcopy = xMat.copy()
     xcopy.sort(0)
-    #print(xcopy[:,1])
     yHat = xcopy * ws
     print(yHat)
     ax.plot(xcopy[:,1],yHat)
