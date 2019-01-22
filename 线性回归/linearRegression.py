@@ -123,8 +123,6 @@ def ridgeRegres(xMat,yMat,lam=0.2):
         print("This matrix is singular,cannot do inverse")
         return
 
-    #print(denom.I.shape)
-    #print((xMat.T*yMat).shape)
     ws = denom.I * (xMat.T * yMat)
     return ws
 
