@@ -147,7 +147,7 @@ def ridgeTest(xArr,yArr):
 
     # 设置0矩阵wMat用于置放每一个样本，对8个特征每一次进行计算时的ws权值
     wMat = np.zeros((numTestPts,np.shape(xMat)[1]))
-    print(wMat)
+
     for i in range(numTestPts):
         ws = ridgeRegres(xMat,yMat,np.exp(i-10))
         wMat[i,:] = ws.T
