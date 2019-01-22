@@ -4,8 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 '''
-线性回归解析:
-https://blog.csdn.net/qq_25134999/article/details/82825789
+线性回归：来自机器学习实战
 '''
 
 def loadDataSet(fileName):
