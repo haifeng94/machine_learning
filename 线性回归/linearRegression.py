@@ -134,9 +134,7 @@ def ridgeTest(xArr,yArr):
     '''
     xMat = np.mat(xArr)
     yMat = np.mat(yArr).T
-    print(xMat.shape)
-    print(yMat.shape)
-
+  
     # 数据标准化（特征标准化处理），减去均值，除以方差
     yMean = np.mean(yMat,0)
     yMat = yMat - yMean
