@@ -61,12 +61,11 @@ def lwlr(testPoint,xArr,yArr,k=1.0):
     yMat = np.mat(yArr).T
     m = np.shape(xMat)[0]
     weights = np.mat(np.eye((m))) # 生成对角矩阵(方阵),对角线为1，其余全为0
-    #print(weights)
     for i in range(m):
         diffMat = testPoint - xMat[i,:] # 计算样本点与预测值的距离
         #print(diffMat*diffMat.T)
         weights[i,i] = np.exp(diffMat*diffMat.T/(-2.0*k**2)) # 计算高斯核函数W
-        #print(weights)
+        
     xTx = xMat.T * (weights * xMat)
     if np.linalg.det(xTx) == 0.0: # 判断是否可逆
         print("This matrix is singular, cannot do inverse")
