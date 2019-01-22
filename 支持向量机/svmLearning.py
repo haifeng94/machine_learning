@@ -117,6 +117,4 @@ def showClassifer(dataMat,labelMat):
 
 if __name__ == "__main__":
     dataMat,labelMat = loadDataSet('testSet.txt')
-    print(dataMat)
-    print(labelMat)
     showClassifer(dataMat,labelMat)
