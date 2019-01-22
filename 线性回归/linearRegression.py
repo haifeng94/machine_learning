@@ -89,13 +89,11 @@ def plotGrap2():
     '''
     dataMat, labelMat = loadDataSet('ex0.txt')
     yHat = lwlrTest(dataMat, dataMat, labelMat, 0.01)
-    #print(yHat)
     xMat = np.mat(dataMat)
     yMat = np.mat(labelMat)
     srtInd = xMat[:,1].argsort(0) # argsort函数返回的是数组值从小到大的索引值,0表示列，1表示行
     print(srtInd)      # xMat[:,1] shape(200,1)
     xSort = xMat[srtInd][:,0,:] # shape(200,1,2)降维
-    print(xSort)
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
