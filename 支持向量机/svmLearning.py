@@ -4,6 +4,10 @@ import numpy as np
 import copy
 import matplotlib.pyplot as plt
 
+'''
+支持向量机：来自机器学习实战
+'''
+
 def loadDataSet(filename):
     dataMat = []
     labelMat = []
