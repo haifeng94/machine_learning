@@ -201,7 +201,6 @@ def stageWise(xArr, yArr, eps=0.01, numIt=100):
 
     for i in range(numIt):
         lowestError = float('inf')  # inf的意思是正无穷
-        #print(lowestError)
 
         '''
         开始进行贪心算法，针对整个数据集迭代一次，即上面的for循环中的一次i,
