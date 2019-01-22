@@ -52,14 +52,12 @@ def plotGrap():
     xcopy = xMat.copy()
     xcopy.sort(0)
     yHat = xcopy * ws
-    print(yHat)
     ax.plot(xcopy[:,1],yHat)
     plt.show()
 
 # 局部加权线性回归（Local Weighted Linear Regression，LWLR）
 def lwlr(testPoint,xArr,yArr,k=1.0):
     xMat = np.mat(xArr)
-    #print(xMat)
     yMat = np.mat(yArr).T
     m = np.shape(xMat)[0]
     weights = np.mat(np.eye((m))) # 生成对角矩阵(方阵),对角线为1，其余全为0
