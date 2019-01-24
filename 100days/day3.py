@@ -6,6 +6,10 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
+'''
+from Avik-Jain/100-Days-Of-ML-Code
+'''
+
 def multiple_linear_regression():
     #Step 1: Data Preprocessing
     dataset = pd.read_csv('50_Startups.csv')
@@ -14,7 +18,7 @@ def multiple_linear_regression():
 
     labelencoder = LabelEncoder()
     X[ : , 3] = labelencoder.fit_transform(X[ : , 3])
-    #print(X)
+ 
     onehotencoder = OneHotEncoder(categorical_features=[3])
     X = onehotencoder.fit_transform(X).toarray()
     X = X[: , 1:]
@@ -23,6 +27,7 @@ def multiple_linear_regression():
     #Step 2: Fitting Multiple Linear Regression to the Training set
     regressor = LinearRegression()
     regressor = regressor.fit(X_train,Y_train)
+    
     #Step 3: Predicting the Test set results
     y_pred = regressor.predict(X_test)
     print(y_pred)
