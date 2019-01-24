@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 '''
-来自
+from Avik-Jain/100-Days-Of-ML-Code
 '''
 
 #Data process
