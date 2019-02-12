@@ -8,6 +8,10 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
 
+'''
+K近邻(K Nearest Neighbor)：参考Avik-Jain/100-Days-Of-ML-Code
+'''
+
 def KNN():
     #Importing the dataset
     dataset = pd.read_csv('Social_Network_Ads.csv')
