@@ -9,6 +9,10 @@ from sklearn.svm import SVC
 from sklearn.metrics import confusion_matrix
 from matplotlib.colors import ListedColormap
 
+'''
+支持向量机(Support Vector Machine)：参考Avik-Jain/100-Days-Of-ML-Code
+'''
+
 def svm():
     #Importing the dataset
     dataset = pd.read_csv('Social_Network_Ads.csv')
