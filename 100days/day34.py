@@ -9,6 +9,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import confusion_matrix
 from matplotlib.colors import ListedColormap
 
+'''
+Random Forests(随机森林):来着Avik-Jain/100-Days-Of-ML-Code
+'''
+
 def random_forests():
     #Importing the dataset
     dataset = pd.read_csv('Social_Network_Ads.csv')
